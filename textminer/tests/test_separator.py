@@ -16,6 +16,7 @@ def test_words(input, expected):
     assert s.words(input) == expected
 
 
+# Working on this now, close
 @xfail
 @params("input,expected", [
     ("919-555-1212", {"area_code": "919", "number": "555-1212"}),
@@ -25,10 +26,11 @@ def test_words(input, expected):
     ("919 555-1212", {"area_code": "919", "number": "555-1212"}),
     ("555-121", None)
 ])
+# solved this one
 def test_phone_numbers(input, expected):
     assert s.phone_number(input) == expected
 
-
+#${1} \d+.\d+
 @xfail
 @params("input,expected", [
     ("$4", {"currency": "$", "amount": 4.0}),
@@ -56,7 +58,7 @@ def test_money(input, expected):
     currencies later."""
     assert s.money(input) == expected
 
-
+# close \b\d{5,5}-?(\d{4})? need to exclude the -?
 @xfail
 @params("input,expected", [
     ("63936", {"zip": "63936", "plus4": None}),

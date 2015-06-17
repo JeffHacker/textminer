@@ -3,7 +3,7 @@ xfail = pytest.mark.xfail
 
 import textminer.validator as v
 
-
+# for whole binary thing.. [0-1]
 @xfail
 def test_binary_numbers():
     assert v.binary("0")
@@ -14,16 +14,15 @@ def test_binary_numbers():
     assert not v.binary("")
     assert not v.binary("911")
 
-
 @xfail
 def test_binary_even():
     """String must be a binary number and be even."""
-
+    # (\d+)?0\b
     assert v.binary_even("10")
     assert v.binary_even("1110100010")
     assert not v.binary_even("1011")
 
-
+# [0-F] don't know why lower cases are being chosen
 @xfail
 def test_hexadecimal():
     assert v.hex("CAFE")
@@ -109,7 +108,7 @@ def test_money():
     assert not v.money("31")
     assert not v.money("$$31")
 
-
+# \d{5}\-?(\d{4})?
 @xfail
 def test_zip():
     assert v.zipcode("63936")
